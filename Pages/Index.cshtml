@@ -1,15 +1,19 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Certificate Information";
 }
 
 <div>
     <h1 class="display-4">Certificate Information</h1>
-    <p>Protocol: @ViewData["Protocol"]</p>
-    <p>Issuer: @ViewData["Issuer"]</p>
-    <p>SubjectName: @ViewData["SubjectName"]</p>
-    <p>Serial: @ViewData["Serial"]</p>
-    <p>Thumbprint: @ViewData["Thumbprint"]</p>
-    <p>Expiration: @ViewData["Expiration"]</p>
+    <table>
+        <tr><td>Protocol:</td><td>@ViewData["Protocol"]</td></tr>
+        <tr><td>Issuer:</td><td>@ViewData["Issuer"]</td></tr>
+        <tr><td>SubjectName:</td><td>@ViewData["SubjectName"]</td></tr>
+        <tr><td>Serial:</td><td>@ViewData["Serial"]</td></tr>
+        <tr><td>Thumbprint:</td><td>@ViewData["Thumbprint"]</td></tr>
+        <tr><td>Expiration:</td><td>@ViewData["Expiration"]</td></tr>
+    </table>
+    </br>
+    <p><i><sub>Local Test URI: @ViewData["TestURI"]</sub></i></p>
 </div>

@@ -16,7 +16,6 @@ namespace CertTester.Pages
 
         public void OnGet()
         {
-            //string emptyUri = "https://" + HttpContext.Request.Host.ToUriComponent() + "/Empty";
             string emptyUri = "https://" + HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" + HttpContext.Connection.LocalPort + "/Empty";
             X509Certificate2 serverCert = null;
             var httpClientHandler = new HttpClientHandler
@@ -30,6 +29,7 @@ namespace CertTester.Pages
             var httpClient = new HttpClient(httpClientHandler);
             httpClient.Send(new HttpRequestMessage(HttpMethod.Get, emptyUri));
 
+            ViewData["TestURI"] = emptyUri;
             ViewData["Protocol"] = HttpContext.Request.IsHttps ? "HTTPS" : "HTTP";
             ViewData["Issuer"] = serverCert.Issuer;
             ViewData["SubjectName"] = serverCert.SubjectName.Name;
