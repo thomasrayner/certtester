@@ -16,7 +16,8 @@ namespace CertTester.Pages
 
         public void OnGet()
         {
-            string emptyUri = "https://" + HttpContext.Request.Host.ToUriComponent() + "/Empty";
+            //string emptyUri = "https://" + HttpContext.Request.Host.ToUriComponent() + "/Empty";
+            string emptyUri = "https://" + HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" + HttpContext.Connection.LocalPort + "/Empty";
             X509Certificate2 serverCert = null;
             var httpClientHandler = new HttpClientHandler
             {
