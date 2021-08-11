@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 
 namespace CertTester.Pages
 {
@@ -16,7 +18,11 @@ namespace CertTester.Pages
 
         public void OnGet()
         {
-            string emptyUri = "https://" + HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" + HttpContext.Connection.LocalPort + "/Empty";
+            string host = Regex.Match(HttpContext.Request.Host.Value, "localhost").Success ? 
+                HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" + HttpContext.Connection.LocalPort :
+                HttpContext.Request.Host.Value;
+
+            string emptyUri = "https://" + host + "/Empty";
             X509Certificate2 serverCert = null;
             var httpClientHandler = new HttpClientHandler
             {
