@@ -6,14 +6,26 @@
 
 <div>
     <h1 class="display-4">Certificate Information</h1>
-    <table>
-        <tr><td>Protocol:</td><td>@ViewData["Protocol"]</td></tr>
+    <form>
+        <p>
+            https://<input name="endpoint" id="endpoint" type="text" />
+            <input name="endpointButton" id="endpointButton" type="button" value="Check Specific Site" onclick="window.location = '/?endpoint=' + document.getElementById('endpoint').value;" />
+        </p>
+    </form>
+    <br />
+    <p><b>Targetted URI: <a href="@ViewData["TestURI"]" target="_blank">@ViewData["TestURI"]</a></b></p>
+    <table class="table">
         <tr><td>Issuer:</td><td>@ViewData["Issuer"]</td></tr>
         <tr><td>SubjectName:</td><td>@ViewData["SubjectName"]</td></tr>
-        <tr><td>Serial:</td><td>@ViewData["Serial"]</td></tr>
         <tr><td>Thumbprint:</td><td>@ViewData["Thumbprint"]</td></tr>
         <tr><td>Expiration:</td><td>@ViewData["Expiration"]</td></tr>
+        <tr><td>ValidFrom:</td><td>@ViewData["ValidFrom"]</td></tr>
+        <tr><td>SerialNumber:</td><td>@ViewData["SerialNumber"]</td></tr>
+        <tr><td>SignatureAlgo:</td><td>@ViewData["SignatureAlgo"]</td></tr>
     </table>
-    </br>
-    <p><i><sub>Local Test URI: @ViewData["TestURI"]</sub></i></p>
+
+    <a href="#" onclick="document.getElementById('allData').style.display = 'block'">Raw Data (click to show)</a>
+    <div style="display: none;" id="allData">
+        @Html.Raw(@ViewData["AllData"])
+    </div>
 </div>

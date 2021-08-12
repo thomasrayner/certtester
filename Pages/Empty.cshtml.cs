@@ -11,8 +11,6 @@ namespace CertTester.Pages
     {
         public void OnGet()
         {
-            string emptyUri = "https://" + HttpContext.Request.Host.Value + "/Empty";
-            ViewData["TestURI"] = emptyUri;
         }
     }
 }
