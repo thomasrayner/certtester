@@ -18,28 +18,7 @@ namespace CertTester.Pages
 
         public void OnGet()
         {
-            string targetUri = string.Empty;
-
-            if (HttpContext.Request.Query.ContainsKey("endpoint"))
-            {
-                HttpContext.Request.Query.TryGetValue("endpoint", out var userProvidedEndpoint);
-                string userProvidedString = userProvidedEndpoint.ToString();
-                
-                if (!Regex.Match(userProvidedString, @"^https\:\/\/").Success)
-                {
-                    targetUri = "https://";
-                }
-
-                targetUri += userProvidedString;
-            }
-            else
-            {
-                string host = Regex.Match(HttpContext.Request.Host.Value, "localhost").Success ?
-                HttpContext.Connection.LocalIpAddress.MapToIPv4() + ":" + HttpContext.Connection.LocalPort :
-                HttpContext.Request.Host.Value;
-
-                targetUri = "https://" + host + "/Empty";
-            }
+            string targetUri = "https://" + HttpContext.Request.Host.Value + "/Empty";
             
             X509Certificate2 serverCert = null;
             var httpClientHandler = new HttpClientHandler
