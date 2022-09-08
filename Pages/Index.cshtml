@@ -6,12 +6,6 @@
 
 <div>
     <h1 class="display-4">Certificate Information</h1>
-    <form>
-        <p>
-            https://<input name="endpoint" id="endpoint" type="text" />
-            <input name="endpointButton" id="endpointButton" type="button" value="Check Specific Site" onclick="window.location = '/?endpoint=' + document.getElementById('endpoint').value;" />
-        </p>
-    </form>
     <br />
     <p><b>Targetted URI: <a href="@ViewData["TestURI"]" target="_blank">@ViewData["TestURI"]</a></b></p>
     <table class="table">
